@@ -25,3 +25,13 @@ console.log(stringifyBoolean(true))
 console.log(stringifyBoolean(false))
 
 // number parser
+const stringifyNumber = (value) => {
+    let result = ""
+    if (typeof value === "number") {
+        result += `${value}`
+    }
+    return result;
+}
+
+console.log(stringifyNumber(23));
+
