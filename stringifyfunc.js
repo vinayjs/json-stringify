@@ -45,3 +45,34 @@ const stringifystring = (value) => {
     return result;
 }
 console.log(stringifystring("vinay"));
+
+// array parser
+
+const stringifyArray = (value) => {
+    let result = "";
+    let lastIndex = value.length - 1;
+    result += '['
+    for (let i = 0; i < value.length; i++) {
+        if (value[i] === null) {
+            result += `${value[i]}`
+        }
+        else if (value[i] === true) {
+            result += `${true}`
+        }
+        else if (value[i] === false) {
+            result += `${false}`
+        }
+        else if (typeof value[i] === "number") {
+            result += `${value[i]}`
+        }
+        else if (typeof value[i] === "string") {
+            result += `"${value[i]}"`
+        }
+        if (value[i] !== value[lastIndex]) {
+        result += "," 
+        } 
+    }
+    result += ']'
+    return result;
+}
+console.log(stringifyArray(["vinay", 12, null]))
