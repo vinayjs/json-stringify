@@ -23,3 +23,5 @@ const stringifyBoolean = (value) => {
 }
 console.log(stringifyBoolean(true))
 console.log(stringifyBoolean(false))
+
+// number parser
