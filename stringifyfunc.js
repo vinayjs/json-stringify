@@ -35,3 +35,13 @@ const stringifyNumber = (value) => {
 
 console.log(stringifyNumber(23));
 
+// string parser
+
+const stringifystring = (value) => {
+    let result = ""
+    if (typeof value === "string") {
+        result += `"${value}"`
+    }
+    return result;
+}
+console.log(stringifystring("vinay"));
