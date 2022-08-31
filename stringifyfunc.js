@@ -1,194 +1,194 @@
-// null parser
+// // null parser
 
-const stringifyNull = (value) => {
-    if (value === null) {
-        return `"${value}"`;
-    }
-}
+// const stringifyNull = (value) => {
+//     if (value === null) {
+//         return `"${value}"`;
+//     }
+// }
 
-console.log(stringifyNull(null));
+// console.log(stringifyNull(null));
 
-// boolean parser
+// // boolean parser
 
-const stringifyBoolean = (value) => {
-    if (value === true) {
-        return `"${true}"`;
-    }
-    else if (value === false) {
-        return `"${false}"`;
-    }
-}
-console.log(stringifyBoolean(true))
-console.log(stringifyBoolean(false))
+// const stringifyBoolean = (value) => {
+//     if (value === true) {
+//         return `"${true}"`;
+//     }
+//     else if (value === false) {
+//         return `"${false}"`;
+//     }
+// }
+// console.log(stringifyBoolean(true))
+// console.log(stringifyBoolean(false))
 
-// number parser
-const stringifyNumber = (value) => {
-    let result = ""
-    if (typeof value === "number") {
-        result += `${value}`
-    }
-    return result;
-}
+// // number parser
+// const stringifyNumber = (value) => {
+//     let result = ""
+//     if (typeof value === "number") {
+//         result += `${value}`
+//     }
+//     return result;
+// }
 
-console.log(stringifyNumber(23));
+// console.log(stringifyNumber(23));
 
-// string parser
+// // string parser
 
-const stringifystring = (value) => {
-    let result = ""
-    if (typeof value === "string") {
-        result += `"${value}"`
-    }
-    return result;
-}
-console.log(stringifystring("vinay"));
+// const stringifystring = (value) => {
+//     let result = ""
+//     if (typeof value === "string") {
+//         result += `"${value}"`
+//     }
+//     return result;
+// }
+// console.log(stringifystring("vinay"));
 
-// array parser
+// // array parser
 
-const stringifyArr = (value) => {
-    let result = "";
-    let lastIndex = value.length - 1;
-    result += "'["
-    for (let i = 0; i < value.length; i++) {
-        if (value[i] === null) {
-            result += `${value[i]}`
-        }
-        else if (value[i] === true) {
-            result += `${true}`
-        }
-        else if (value[i] === false) {
-            result += `${false}`
-        }
-        else if (typeof value[i] === "number") {
-            result += `${value[i]}`
-        }
-        else if (typeof value[i] === "string") {
-            result += `"${value[i]}"`
-        }
-        if (value[i] !== value[lastIndex]) {
-        result += "," 
-        } 
-    }
-    result += "]'"
-    return result;
-}
-console.log(stringifyArr(["vinay", 12, null]))
-console.log(stringifyArr([2, 4, 6, true, "vinay"]))
+// const stringifyArr = (value) => {
+//     let result = "";
+//     let lastIndex = value.length - 1;
+//     result += "'["
+//     for (let i = 0; i < value.length; i++) {
+//         if (value[i] === null) {
+//             result += `${value[i]}`
+//         }
+//         else if (value[i] === true) {
+//             result += `${true}`
+//         }
+//         else if (value[i] === false) {
+//             result += `${false}`
+//         }
+//         else if (typeof value[i] === "number") {
+//             result += `${value[i]}`
+//         }
+//         else if (typeof value[i] === "string") {
+//             result += `"${value[i]}"`
+//         }
+//         if (value[i] !== value[lastIndex]) {
+//         result += "," 
+//         } 
+//     }
+//     result += "]'"
+//     return result;
+// }
+// console.log(stringifyArr(["vinay", 12, null]))
+// console.log(stringifyArr([2, 4, 6, true, "vinay"]))
 
-// object parser
+// // object parser
 
-const stringifyObject = (obj) => {
-    let result = "";
-    let lastKey = Object.keys(obj).pop()
-    result += "'{";  
-    for (let key in obj) {
-        const value = obj[key];
-        result += `"${key}":`
-        if (value === null) {
-            result += `${value}`
-        }
-        else if (value === true) {
-            result += `${true}`
-        }
-        else if (value === false) {
-            result += `${false}`
-        }
-        else if (typeof value === "number") {
-            result += `${value}`
-        }
-        else if (typeof value === "string") {
-            result += `"${value}"`
-        }
-        else if (typeof value === "object") {
-            result += `${stringifyObject(value)}`
-        }
-        if (key !== lastKey) {
-            result += "," 
-            } 
-    }
-    result += "}'"
-    return result;
-}
+// const stringifyObject = (obj) => {
+//     let result = "";
+//     let lastKey = Object.keys(obj).pop()
+//     result += "'{";  
+//     for (let key in obj) {
+//         const value = obj[key];
+//         result += `"${key}":`
+//         if (value === null) {
+//             result += `${value}`
+//         }
+//         else if (value === true) {
+//             result += `${true}`
+//         }
+//         else if (value === false) {
+//             result += `${false}`
+//         }
+//         else if (typeof value === "number") {
+//             result += `${value}`
+//         }
+//         else if (typeof value === "string") {
+//             result += `"${value}"`
+//         }
+//         else if (typeof value === "object") {
+//             result += `${stringifyObject(value)}`
+//         }
+//         if (key !== lastKey) {
+//             result += "," 
+//             } 
+//     }
+//     result += "}'"
+//     return result;
+// }
 
-console.log(stringifyObject({ x: true, y: 32, z: 42}));
-console.log(JSON.stringify({ x: true, y: {x :5, y:false}}))
-console.log(JSON.stringify({ x: true, y: 32, z: 42}))
+// console.log(stringifyObject({ x: true, y: 32, z: 42}));
+// console.log(JSON.stringify({ x: true, y: {x :5, y:false}}))
+// console.log(JSON.stringify({ x: true, y: 32, z: 42}))
 
 
-// // array with object parser
+// // // array with object parser
 
-const stringifyArray = (value) => {
-    let result = "";
-    let lastIndex = value.length - 1;
-    result += "'["
-    for (let i = 0; i < value.length; i++) {
-        if (value[i] === null) {
-            result += `${value[i]}`
-        }
-        else if (value[i] === true) {
-            result += `${true}`
-        }
-        else if (value[i] === false) {
-            result += `${false}`
-        }
-        else if (typeof value[i] === "number") {
-            result += `${value[i]}`
-        }
-        else if (typeof value[i] === "string") {
-            result += `"${value[i]}"`
-        }
-        else if (typeof value[i] === "object") {
-            let output = "";
-            let object = value[i];
-            let lastKey = Object.keys(object).pop()
-            output += "{";  
-            for (let key in object) {
-                const value = object[key];
-                output += `"${key}":`
-                if (value === null) {
-                    output += `${value}`
-                }
-                else if (value === true) {
-                    output += `${true}`
-                }
-                else if (value === false) {
-                    output += `${false}`
-                }
-                else if (typeof value === "number") {
-                    output += `${value}`
-                }
-                else if (typeof value === "string") {
-                    output += `"${value}"`
-                }
-                else if (typeof value === "object") {
-                    output += `${stringifyObject(value)}`
-                }
-                if (key !== lastKey) {
-                    output += "," 
-                } 
-            }
-            output += "}"
-            result += output;
-        }
-        if (value[i] !== value[lastIndex]) {
-        result += "," 
-        } 
-    }
-    result += "]'"
-    return result;
-}
+// const stringifyArray = (value) => {
+//     let result = "";
+//     let lastIndex = value.length - 1;
+//     result += "'["
+//     for (let i = 0; i < value.length; i++) {
+//         if (value[i] === null) {
+//             result += `${value[i]}`
+//         }
+//         else if (value[i] === true) {
+//             result += `${true}`
+//         }
+//         else if (value[i] === false) {
+//             result += `${false}`
+//         }
+//         else if (typeof value[i] === "number") {
+//             result += `${value[i]}`
+//         }
+//         else if (typeof value[i] === "string") {
+//             result += `"${value[i]}"`
+//         }
+//         else if (typeof value[i] === "object") {
+//             let output = "";
+//             let object = value[i];
+//             let lastKey = Object.keys(object).pop()
+//             output += "{";  
+//             for (let key in object) {
+//                 const value = object[key];
+//                 output += `"${key}":`
+//                 if (value === null) {
+//                     output += `${value}`
+//                 }
+//                 else if (value === true) {
+//                     output += `${true}`
+//                 }
+//                 else if (value === false) {
+//                     output += `${false}`
+//                 }
+//                 else if (typeof value === "number") {
+//                     output += `${value}`
+//                 }
+//                 else if (typeof value === "string") {
+//                     output += `"${value}"`
+//                 }
+//                 else if (typeof value === "object") {
+//                     output += `${stringifyObject(value)}`
+//                 }
+//                 if (key !== lastKey) {
+//                     output += "," 
+//                 } 
+//             }
+//             output += "}"
+//             result += output;
+//         }
+//         if (value[i] !== value[lastIndex]) {
+//         result += "," 
+//         } 
+//     }
+//     result += "]'"
+//     return result;
+// }
 
-console.log(JSON.stringify(["a", 22, { x: null, y: 6 }]));
-console.log(JSON.stringify([1, 2, "ACSD"]))
-console.log(JSON.stringify([1, 2, 3, 4]))
-console.log(JSON.stringify(["VINAY", "adarsh"]))
-console.log(JSON.stringify([true, null, 56]))
-console.log("end")
-console.log(stringifyArray(["a", 22, { x: null, y: 6 }]))
-console.log(stringifyArray([1, 2, "ACSD"]))
-console.log(stringifyArray([1, 2, 3, 4]))
-console.log(stringifyArray(["VINAY", "adarsh"]))
-console.log(stringifyArray([true, null, 56]))
+// console.log(JSON.stringify(["a", 22, { x: null, y: 6 }]));
+// console.log(JSON.stringify([1, 2, "ACSD"]))
+// console.log(JSON.stringify([1, 2, 3, 4]))
+// console.log(JSON.stringify(["VINAY", "adarsh"]))
+// console.log(JSON.stringify([true, null, 56]))
+// console.log("end")
+// console.log(stringifyArray(["a", 22, { x: null, y: 6 }]))
+// console.log(stringifyArray([1, 2, "ACSD"]))
+// console.log(stringifyArray([1, 2, 3, 4]))
+// console.log(stringifyArray(["VINAY", "adarsh"]))
+// console.log(stringifyArray([true, null, 56]))
 
 
 // stringify function
@@ -331,7 +331,7 @@ const stringify = (input) => {
     else if (typeof input === "string") {
         result += stringifystring(input)
     }
-    else if (Array.isArray(input) === true){
+    else if (typeof input === "array"){
         result += stringifyArray(input)
     }
     else if (typeof input === "object") {
@@ -393,10 +393,10 @@ const stringify = (input) => {
 //    ]
 // }
 // }));
-// // console.log(stringify(null));
-// // console.log(stringify(true));
-// // console.log(stringify(32));
-// // console.log(stringify("vinay", "adarsh"));
+// console.log(stringify(null));
+// console.log(stringify(true));
+// console.log(stringify(32));
+// console.log(stringify("vinay", "adarsh"));
 // console.log(stringify([1, 2, 3]));
 // console.log(stringify({"apiVersion":"2.0",
 // "data":{
