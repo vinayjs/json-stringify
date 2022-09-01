@@ -24,6 +24,8 @@ const stringify = (input) => {
 }
 
 
+
+
 // stringify(null)
 
 const stringifyNull = (value) => {
@@ -31,9 +33,6 @@ const stringifyNull = (value) => {
         return `"${value}"`;
     }
 }
-
-
-
 
 // stringify(boolean)
 
@@ -59,7 +58,6 @@ const stringifyNumber = (value) => {
 }
 
 
-
 //  stringify(string)
 
 const stringifystring = (value) => {
@@ -69,7 +67,6 @@ const stringifystring = (value) => {
     }
     return result;
 }
-
 
 
 //  stringify(array) 
