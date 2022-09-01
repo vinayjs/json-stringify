@@ -25,7 +25,6 @@ const stringify = (input) => {
 
 
 
-
 // stringify(null)
 
 const stringifyNull = (value) => {
@@ -33,6 +32,7 @@ const stringifyNull = (value) => {
         return `"${value}"`;
     }
 }
+
 
 // stringify(boolean)
 
@@ -45,8 +45,6 @@ const stringifyBoolean = (value) => {
     }
 }
 
-
-
 //  stringify(number) 
 
 const stringifyNumber = (value) => {
@@ -58,23 +56,22 @@ const stringifyNumber = (value) => {
 }
 
 
-//  stringify(string)
+//  stringify(string) 
 
 const stringifystring = (value) => {
     let result = ""
     if (typeof value === "string") {
-        result += `"${value}"`
+        result += `"${value.replace(/[\"]/g, '\\"')}"`
     }
     return result;
 }
 
-
-//  stringify(array) 
-
+//  stringify(array)
+ 
 const stringifyArray = (value) => {
     let result = "";
     let lastIndex = value.length - 1;
-    result += "'["
+    result += "["
     for (let i = 0; i < value.length; i++) {
         if (value[i] === null) {
             result += `${value[i]}`
@@ -89,7 +86,7 @@ const stringifyArray = (value) => {
             result += `${value[i]}`
         }
         else if (typeof value[i] === "string") {
-            result += `"${value[i]}"`
+            result += `"${value[i].replace(/[\"]/g, '\\"')}"`
         }
         else if (typeof value[i] === "object") {
             let output = "";
@@ -112,7 +109,10 @@ const stringifyArray = (value) => {
                     output += `${value}`
                 }
                 else if (typeof value === "string") {
-                    output += `"${value}"`
+                    output += `"${value.replace(/[\"]/g, '\\"')}"`
+                }
+                else if (Array.isArray(value)) {
+                    output += `${stringifyArray(value)}`
                 }
                 else if (typeof value === "object") {
                     output += `${stringifyObject(value)}`
@@ -128,17 +128,16 @@ const stringifyArray = (value) => {
         result += "," 
         } 
     }
-    result += "]'"
+    result += "]"
     return result;
 }
 
+//  stringify(object) 
 
-//  stringify(object)
- 
 const stringifyObject = (obj) => {
     let result = "";
     let lastKey = Object.keys(obj).pop()
-    result += "'{";  
+    result += "{";  
     for (let key in obj) {
         const value = obj[key];
         result += `"${key}":`
@@ -155,10 +154,10 @@ const stringifyObject = (obj) => {
             result += `${value}`
         }
         else if (typeof value === "string") {
-            result += `"${value}"`
+            result += `"${value.replace(/[\"]/g, '\\"')}"`
         }
         else if (Array.isArray(value)) {
-            result += `"${stringifyArray(value)}"`
+            result += `${stringifyArray(value)}`
         }
         else if (typeof value === "object") {
             result += `${stringifyObject(value)}`
@@ -167,6 +166,6 @@ const stringifyObject = (obj) => {
             result += "," 
             } 
     }
-    result += "}'"
+    result += "}"
     return result;
 }
