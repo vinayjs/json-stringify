@@ -1,3 +1,5 @@
+const input = require("./input.json")
+
 // call parsers based on input type & returns stringified output
 const stringify = (input) => {
     let result = ""
