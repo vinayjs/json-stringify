@@ -61,7 +61,7 @@ const stringifyNumber = (value) => {
 const stringifystring = (value) => {
     let result = ""
     if (typeof value === "string") {
-        result += `"${value.replace(/[\"]/g, '\\"')}"`
+        result += `"${replacer(value)}"`
     }
     return result;
 }
@@ -86,7 +86,7 @@ const stringifyArray = (value) => {
             result += `${value[i]}`
         }
         else if (typeof value[i] === "string") {
-            result += `"${value[i].replace(/[\"]/g, '\\"')}"`
+            result += `"${replacer(value)}"`
         }
         else if (typeof value[i] === "object") {
             let output = "";
@@ -109,7 +109,7 @@ const stringifyArray = (value) => {
                     output += `${value}`
                 }
                 else if (typeof value === "string") {
-                    output += `"${value.replace(/[\"]/g, '\\"')}"`
+                    output += `"${replacer(value)}"`
                 }
                 else if (Array.isArray(value)) {
                     output += `${stringifyArray(value)}`
@@ -154,7 +154,7 @@ const stringifyObject = (obj) => {
             result += `${value}`
         }
         else if (typeof value === "string") {
-            result += `"${value.replace(/[\"]/g, '\\"')}"`
+            result += `"${replacer(value)}"`
         }
         else if (Array.isArray(value)) {
             result += `${stringifyArray(value)}`
@@ -169,3 +169,15 @@ const stringifyObject = (obj) => {
     result += "}"
     return result;
 }
+
+// replacer function
+
+const replacer = (string) => {
+    return string
+      .replace(/[\"]/g, '\\"')
+      .replace(/[\b]/g, "\\b")
+      .replace(/[\f]/g, "\\f")
+      .replace(/[\n]/g, "\\n")
+      .replace(/[\r]/g, "\\r")
+      .replace(/[\t]/g, "\\t");
+  };
