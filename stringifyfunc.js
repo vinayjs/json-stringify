@@ -1,5 +1,4 @@
-// stringify()
-
+// call parsers based on input type & returns stringified output
 const stringify = (input) => {
     let result = ""
     if (input === null) {
@@ -24,29 +23,21 @@ const stringify = (input) => {
 }
 
 
-
-// stringify(null)
-
+// returns stringified output for the null input.
 const stringifyNull = (value) => {
     if (value === null) {
+        return `${value}`;
+    }
+}
+
+// returns stringified output for a boolean input.
+const stringifyBoolean = (value) => {
+    if (typeof value === "boolean") {
         return `"${value}"`;
     }
 }
 
-
-// stringify(boolean)
-
-const stringifyBoolean = (value) => {
-    if (value === true) {
-        return `"${true}"`;
-    }
-    else if (value === false) {
-        return `"${false}"`;
-    }
-}
-
-//  stringify(number) 
-
+// returns stringified output for number datatype.
 const stringifyNumber = (value) => {
     let result = ""
     if (typeof value === "number") {
@@ -56,8 +47,7 @@ const stringifyNumber = (value) => {
 }
 
 
-//  stringify(string) 
-
+// returns stringified output for "string" datatype.
 const stringifystring = (value) => {
     let result = ""
     if (typeof value === "string") {
@@ -66,64 +56,13 @@ const stringifystring = (value) => {
     return result;
 }
 
-//  stringify(array)
- 
+// returns stringified output for "array" datatype.
 const stringifyArray = (value) => {
     let result = "";
     let lastIndex = value.length - 1;
     result += "["
     for (let i = 0; i < value.length; i++) {
-        if (value[i] === null) {
-            result += `${value[i]}`
-        }
-        else if (value[i] === true) {
-            result += `${true}`
-        }
-        else if (value[i] === false) {
-            result += `${false}`
-        }
-        else if (typeof value[i] === "number") {
-            result += `${value[i]}`
-        }
-        else if (typeof value[i] === "string") {
-            result += `"${replacer(value[i])}"`
-        }
-        else if (typeof value[i] === "object") {
-            let output = "";
-            let object = value[i];
-            let lastKey = Object.keys(object).pop()
-            output += "{";  
-            for (let key in object) {
-                const value = object[key];
-                output += `"${key}":`
-                if (value === null) {
-                    output += `${value}`
-                }
-                else if (value === true) {
-                    output += `${true}`
-                }
-                else if (value === false) {
-                    output += `${false}`
-                }
-                else if (typeof value === "number") {
-                    output += `${value}`
-                }
-                else if (typeof value === "string") {
-                    output += `"${replacer(value)}"`
-                }
-                else if (Array.isArray(value)) {
-                    output += `${stringifyArray(value)}`
-                }
-                else if (typeof value === "object") {
-                    output += `${stringifyObject(value)}`
-                }
-                if (key !== lastKey) {
-                    output += "," 
-                } 
-            }
-            output += "}"
-            result += output;
-        }
+        result += stringify(value[i])
         if (value[i] !== value[lastIndex]) {
         result += "," 
         } 
@@ -132,8 +71,7 @@ const stringifyArray = (value) => {
     return result;
 }
 
-//  stringify(object) 
-
+// returns stringified output for "object" datatype.
 const stringifyObject = (obj) => {
     let result = "";
     let lastKey = Object.keys(obj).pop()
@@ -141,27 +79,7 @@ const stringifyObject = (obj) => {
     for (let key in obj) {
         const value = obj[key];
         result += `"${key}":`
-        if (value === null) {
-            result += `${value}`
-        }
-        else if (value === true) {
-            result += `${true}`
-        }
-        else if (value === false) {
-            result += `${false}`
-        }
-        else if (typeof value === "number") {
-            result += `${value}`
-        }
-        else if (typeof value === "string") {
-            result += `"${replacer(value)}"`
-        }
-        else if (Array.isArray(value)) {
-            result += `${stringifyArray(value)}`
-        }
-        else if (typeof value === "object") {
-            result += `${stringifyObject(value)}`
-        }
+        result += stringify(value);
         if (key !== lastKey) {
             result += "," 
             } 
@@ -170,8 +88,8 @@ const stringifyObject = (obj) => {
     return result;
 }
 
-// replacer function
 
+// returns the stringified output for special characters.
 const replacer = (string) => {
     let str = string;
     if (typeof str === "string"){
@@ -185,4 +103,4 @@ const replacer = (string) => {
 
     }
     return str;
-  };
+};
