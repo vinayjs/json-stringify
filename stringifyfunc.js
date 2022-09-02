@@ -1,6 +1,6 @@
 const input = require("./input.json")
 
-// call parsers based on input type & returns stringified output
+// function call parsers based on input type & returns stringified output
 const stringify = (input) => {
   let result = "";
   if (input === null) {
@@ -101,8 +101,6 @@ const replacer = (string) => {
   }
   return str;
 };
-
-// const input = {"source": "<a href=\"http://bufferapp.com\" rel=\"nofollow\">Buffer</a>"};
 
 
 const myStringify = stringify(input);
