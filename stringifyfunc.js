@@ -86,7 +86,7 @@ const stringifyArray = (value) => {
             result += `${value[i]}`
         }
         else if (typeof value[i] === "string") {
-            result += `"${replacer(value)}"`
+            result += `"${replacer(value[i])}"`
         }
         else if (typeof value[i] === "object") {
             let output = "";
@@ -173,11 +173,16 @@ const stringifyObject = (obj) => {
 // replacer function
 
 const replacer = (string) => {
-    return string
-      .replace(/[\"]/g, '\\"')
-      .replace(/[\b]/g, "\\b")
-      .replace(/[\f]/g, "\\f")
-      .replace(/[\n]/g, "\\n")
-      .replace(/[\r]/g, "\\r")
-      .replace(/[\t]/g, "\\t");
+    let str = string;
+    if (typeof str === "string"){
+         str
+        .replace(/[\"]/g, '\\"')
+        .replace(/[\b]/g, "\\b")
+        .replace(/[\f]/g, "\\f")
+        .replace(/[\n]/g, "\\n")
+        .replace(/[\r]/g, "\\r")
+        .replace(/[\t]/g, "\\t");
+
+    }
+    return str;
   };
