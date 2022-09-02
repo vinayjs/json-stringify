@@ -102,8 +102,6 @@ const replacer = (string) => {
   return str;
 };
 
-// const input = {"source": "<a href=\"http://bufferapp.com\" rel=\"nofollow\">Buffer</a>"};
-
 
 const myStringify = stringify(input);
 const jsonStringify = JSON.stringify(input);
