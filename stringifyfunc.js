@@ -1,4 +1,5 @@
 const input = require("./input.json")
+//const string = modules.export ("stringifyfunc.js")
 
 // function call parsers based on input type & returns stringified output
 const stringify = (input) => {
@@ -107,5 +108,6 @@ const myStringify = stringify(input);
 const jsonStringify = JSON.stringify(input);
 
 console.log("myStringify", myStringify);
-console.log("jsStringify", jsonStringify);
 console.log(myStringify === jsonStringify ? true : false);
+console.log("jsStringify", jsonStringify);
+
